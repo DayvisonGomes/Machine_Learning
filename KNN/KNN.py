@@ -3,6 +3,7 @@ from collections import Counter
 from sklearn.datasets import load_digits
 from sklearn.model_selection import train_test_split
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import classification_report
 
 def euclidiana(x,y):
     return np.linalg.norm(x-y)
@@ -37,12 +38,14 @@ X_train , X_test , y_train, y_test = train_test_split(X , y , test_size=0.3, ran
 model = KNeighborsClassifier_(n_neighbors=3)
 y_pred = model.fit_predict(X_train, y_train, X_test)
 
-print(f'Acc: {np.round(100*np.mean(y_test==y_pred), 2)}%')
+print('Implementação: ')
+print(classification_report(y_test,y_pred))
 
-model = KNeighborsClassifier(n_neighbors=3)
+model_ = KNeighborsClassifier(n_neighbors=3)
 
-model.fit(X_train, y_train)
+model_.fit(X_train, y_train)
 
-y_pred = model.predict(X_test)
+y_pred_ = model_.predict(X_test)
 
-print(f'Acc: {np.round(100*np.mean(y_test==y_pred), 2)}%')
+print('Sklearn: ')
+print(classification_report(y_test,y_pred_))
